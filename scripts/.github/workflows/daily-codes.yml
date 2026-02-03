@@ -1,0 +1,37 @@
+name: Gift Codes (New Only)
+
+on:
+  schedule:
+    - cron: "0 14 * * *" # daily 14:00 UTC (10am ET)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run fetcher
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PING_ROLE_ID: ${{ secrets.PING_ROLE_ID }}
+        run: python scripts/fetch_codes.py
+
+      - name: Commit updated posted_codes.json
+        run: |
+          if git diff --quiet; then
+            echo "No changes."
+          else
+            git config user.name "gift-code-announcer"
+            git config user.email "actions@users.noreply.github.com"
+            git add posted_codes.json
+            git commit -m "Update posted codes"
+            git push
+          fi
