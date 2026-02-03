@@ -1,5 +1,6 @@
 name: Gift Codes (New Only)
 
+.github/workflows/daily-codes.yml
 on:
   schedule:
     - cron: "0 14 * * *" # daily 14:00 UTC (10am ET)
