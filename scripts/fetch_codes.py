@@ -11,7 +11,6 @@ STATE_PATH = "posted_codes.json"
 
 SOURCES = [
     ("kingshot.net gift-codes", "https://kingshot.net/gift-codes"),
-    ("reddit r/KingShot search", "https://www.reddit.com/r/KingShot/search.json?q=gift%20code&restrict_sr=1&sort=new&t=month"),
     ("eldorado codes", "https://www.eldorado.gg/blog/kingshot-redeem-code/"),
 ]
 
