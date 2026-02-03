@@ -34,6 +34,4 @@ jobs:
             git add posted_codes.json
             git commit -m "Update posted codes"
             git push
-          fi
-
-          
+          fi 
